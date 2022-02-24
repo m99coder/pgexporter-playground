@@ -9,7 +9,7 @@ events:
       created_at,
       updated_at,
       finished_at,
-      EXTRACT(milliseconds FROM (COALESCE(finished_at, now()) - created_at)) as duration
+      ROUND(EXTRACT(milliseconds FROM (COALESCE(finished_at, NOW()) - created_at)))::int AS duration
     FROM events
   metrics:
     - id:
