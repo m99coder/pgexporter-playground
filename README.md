@@ -20,7 +20,10 @@ docker compose restart pgexporter
 # stop a service
 docker compose stop grafana
 
-# stop containers
+# stop containers and remove volumes
+docker compose down --volumes
+
+# stop containers and remove everything
 docker compose down --rmi all
 ```
 
