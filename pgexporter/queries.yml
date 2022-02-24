@@ -33,6 +33,6 @@ events:
     - finished_at:
         usage: "LABEL"
         description: "Time at which the event was finished"
-    - duration_in_ms:
+    - duration:
         usage: "COUNTER"
         description: "Duration of the event in milliseconds"
