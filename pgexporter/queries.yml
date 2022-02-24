@@ -9,7 +9,7 @@ events:
       created_at,
       updated_at,
       finished_at,
-      EXTRACT(milliseconds FROM COALESCE(finished_at, now()) - created_at) as duration
+      EXTRACT(milliseconds FROM (COALESCE(finished_at, now()) - created_at)) as duration
     FROM events
   metrics:
     - id:
