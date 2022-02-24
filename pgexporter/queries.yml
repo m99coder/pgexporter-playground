@@ -1,1 +1,38 @@
-# this is where the queries to create metrics are listed
+# custom metrics queries
+events:
+  query: |
+    SELECT
+      id,
+      source,
+      target,
+      payload,
+      created_at,
+      updated_at,
+      finished_at,
+      EXTRACT(milliseconds FROM COALESCE(finished_at, now()) - created_at) as duration
+    FROM events
+  metrics:
+    - id:
+        usage: "LABEL"
+        description: "Id of the event"
+    - source:
+        usage: "LABEL"
+        description: "Id of the source"
+    - target:
+        usage: "LABEL"
+        description: "Id of the target"
+    - payload:
+        usage: "LABEL"
+        description: "Payload of the event"
+    - created_at:
+        usage: "LABEL"
+        description: "Time at which the event was created"
+    - updated_at:
+        usage: "LABEL"
+        description: "Time at which the event was updated"
+    - finished_at:
+        usage: "LABEL"
+        description: "Time at which the event was finished"
+    - duration_in_ms:
+        usage: "COUNTER"
+        description: "Duration of the event in milliseconds"

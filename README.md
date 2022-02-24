@@ -32,4 +32,7 @@ docker compose down --rmi all
 ```shell
 # connect to database to run queries manually
 docker exec -it postgres psql -U postgres -d test
+
+# run queries in database
+docker exec -it postgres psql -U postgres -d test -f /events.sql
 ```
