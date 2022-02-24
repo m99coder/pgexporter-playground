@@ -1,0 +1,46 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:11.15
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=s3cr3t
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+
+  prometheus:
+    image: prom/prometheus:v2.33.4
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - 9090:9090
+
+  pgexporter:
+    image: wrouesnel/postgres_exporter
+    container_name: pgexporter
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:s3cr3t@postgres:5432/test?sslmode=disable
+      - PG_EXPORTER_DISABLE_SETTINGS_METRICS=true
+      - PG_EXPORTER_EXTEND_QUERY_PATH=/config/queries.yaml
+    volumes:
+      - ./pgexporter/queries.yml:/config/queries.yaml
+    ports:
+      - 9187:9187
+    depends_on:
+      - postgres
+
+  grafana:
+    image: grafana/grafana:8.2.6
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=s3cr3t
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
