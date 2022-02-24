@@ -9,7 +9,16 @@ events:
       created_at,
       updated_at,
       finished_at,
-      ROUND(EXTRACT(milliseconds FROM (COALESCE(finished_at, NOW()) - created_at)))::int AS duration
+      ROUND(
+        EXTRACT(
+          EPOCH FROM COALESCE(finished_at, NOW())
+        ) * 1000
+      ) -
+      ROUND(
+        EXTRACT(
+          EPOCH FROM created_at
+        ) * 1000
+      ) AS duration_in_ms
     FROM events
   metrics:
     - id:
@@ -33,6 +42,6 @@ events:
     - finished_at:
         usage: "LABEL"
         description: "Time at which the event was finished"
-    - duration:
+    - duration_in_ms:
         usage: "COUNTER"
         description: "Duration of the event in milliseconds"
