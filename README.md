@@ -14,6 +14,12 @@ docker compose up -d --build
 # running services
 docker compose ps
 
+# restart a service
+docker compose restart pgexporter
+
+# stop a service
+docker compose stop grafana
+
 # stop containers
 docker compose down --rmi all
 ```

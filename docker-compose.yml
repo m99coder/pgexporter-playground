@@ -19,7 +19,7 @@ services:
       - 9090:9090
 
   pgexporter:
-    image: wrouesnel/postgres_exporter
+    image: prometheuscommunity/postgres-exporter:v0.10.1
     container_name: pgexporter
     environment:
       - DATA_SOURCE_NAME=postgresql://postgres:s3cr3t@postgres:5432/test?sslmode=disable
