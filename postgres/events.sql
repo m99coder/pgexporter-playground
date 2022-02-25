@@ -1,3 +1,4 @@
+-- duration: 7 ms
 INSERT INTO events (
   source,
   target,
@@ -9,11 +10,12 @@ INSERT INTO events (
   'source-1',
   'target-1',
   'payload-1',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:23:54 Europe/Berlin',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:17 Europe/Berlin',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:17 Europe/Berlin'
+  now() - '0.012 seconds'::interval,
+  now() - '0.005 seconds'::interval,
+  now() - '0.005 seconds'::interval
 );
 
+-- duration: 4 ms
 INSERT INTO events (
   source,
   target,
@@ -25,21 +27,24 @@ INSERT INTO events (
   'source-2',
   'target-1',
   'payload-2',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:01 Europe/Berlin',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:09 Europe/Berlin',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:09 Europe/Berlin'
+  now() - '0.015 seconds'::interval,
+  now() - '0.011 seconds'::interval,
+  now() - '0.011 seconds'::interval
 );
 
+-- duration: 5 ms
 INSERT INTO events (
   source,
   target,
   payload,
   created_at,
-  updated_at
+  updated_at,
+  finished_at
 ) VALUES (
   'source-3',
   'target-2',
   'payload-3',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:03 Europe/Berlin',
-  TIMESTAMP WITH TIME ZONE '2022-02-24 10:24:48 Europe/Berlin'
+  now() - '0.006 seconds'::interval,
+  now() - '0.001 seconds'::interval,
+  now() - '0.001 seconds'::interval
 );
