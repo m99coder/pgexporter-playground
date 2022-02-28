@@ -1,4 +1,4 @@
--- duration: 7 ms
+-- duration: 252s = 4m 12s
 INSERT INTO events (
   source,
   target,
@@ -15,7 +15,7 @@ INSERT INTO events (
   now() - '0.05 hours'::interval
 );
 
--- duration: 4 ms
+-- duration: 144s = 2m 24s
 INSERT INTO events (
   source,
   target,
@@ -32,7 +32,7 @@ INSERT INTO events (
   now() - '0.11 hours'::interval
 );
 
--- duration: 5 ms
+-- duration: 180s = 3m
 INSERT INTO events (
   source,
   target,
