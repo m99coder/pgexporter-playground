@@ -7,18 +7,17 @@ events:
       target,
       payload,
       created_at,
-      updated_at,
       finished_at,
       ROUND(
         EXTRACT(
           EPOCH FROM COALESCE(finished_at, NOW())
-        ) * 1000
+        )
       ) -
       ROUND(
         EXTRACT(
           EPOCH FROM created_at
-        ) * 1000
-      ) AS duration_in_ms
+        )
+      ) AS duration_seconds
     FROM events
   metrics:
     - id:
@@ -36,12 +35,9 @@ events:
     - created_at:
         usage: "LABEL"
         description: "Time at which the event was created"
-    - updated_at:
-        usage: "LABEL"
-        description: "Time at which the event was updated"
     - finished_at:
         usage: "LABEL"
         description: "Time at which the event was finished"
-    - duration_in_ms:
+    - duration_seconds:
         usage: "COUNTER"
-        description: "Duration of the event in milliseconds"
+        description: "Duration of the event in seconds"
