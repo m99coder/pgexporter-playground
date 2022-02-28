@@ -7,6 +7,7 @@ events:
       target,
       payload,
       created_at,
+      updated_at,
       finished_at,
       ROUND(
         EXTRACT(
@@ -35,6 +36,9 @@ events:
     - created_at:
         usage: "LABEL"
         description: "Time at which the event was created"
+    - updated_at:
+        usage: "COUNTER"
+        description: "Time at which the event was last updated"
     - finished_at:
         usage: "LABEL"
         description: "Time at which the event was finished"
