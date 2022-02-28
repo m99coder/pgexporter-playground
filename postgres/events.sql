@@ -1,4 +1,5 @@
--- duration: 252s = 4m 12s
+-- duration: 144s = 2m 24s
+-- past from now: 9m -> 6m 36s
 INSERT INTO events (
   source,
   target,
@@ -10,12 +11,13 @@ INSERT INTO events (
   'source-1',
   'target-1',
   'payload-1',
-  now() - '0.12 hours'::interval,
-  now() - '0.05 hours'::interval,
-  now() - '0.05 hours'::interval
+  now() - '0.15 hours'::interval,
+  now() - '0.11 hours'::interval,
+  now() - '0.11 hours'::interval
 );
 
--- duration: 144s = 2m 24s
+-- duration: 252s = 4m 12s
+-- past from now: 7m 12s -> 3m
 INSERT INTO events (
   source,
   target,
@@ -27,12 +29,13 @@ INSERT INTO events (
   'source-2',
   'target-1',
   'payload-2',
-  now() - '0.15 hours'::interval,
-  now() - '0.11 hours'::interval,
-  now() - '0.11 hours'::interval
+  now() - '0.12 hours'::interval,
+  now() - '0.05 hours'::interval,
+  now() - '0.05 hours'::interval
 );
 
 -- duration: 180s = 3m
+-- past from now: 3m 36s -> 36s
 INSERT INTO events (
   source,
   target,

@@ -35,9 +35,20 @@ docker exec -it postgres psql -U postgres -d test
 
 # run queries in database
 docker exec -it postgres psql -U postgres -d test -f /events.sql
+
+# run queries in sequence (which takes 9 minutes)
+docker exec -it postgres psql -U postgres -d test -f /events-in-sequence.sql
 ```
 
 ## Prometheus
 
 - Check the exported metrics: <http://localhost:9187/metrics>
 - Have a look at the rate at which the duration changes over time: <http://localhost:9090/graph?g0.expr=rate(events_duration%5B15m%5D)&g0.tab=0&g0.stacked=0&g0.show_exemplars=0&g0.range_input=10m>
+
+*Metric: `events_duration_seconds`*
+
+![events_duration_seconds](docs/events-duration-seconds.png "Metric: events_duration_seconds")
+
+*Metric: `events_updated_at`*
+
+![events_updated_at](docs/events-updated-at.png "Metric: events_updated_at")
