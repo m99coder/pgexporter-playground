@@ -34,16 +34,16 @@ docker compose down --rmi all
 docker exec -it postgres psql -U postgres -d test
 
 # run queries in database
-docker exec -it postgres psql -U postgres -d test -f /events.sql
+docker exec -it postgres psql -U postgres -d test -f /tmp/postgres/events.sql
 
 # run queries in sequence (which takes 9 minutes)
-docker exec -it postgres psql -U postgres -d test -f /events-in-sequence.sql
+docker exec -it postgres psql -U postgres -d test -f /tmp/postgres/events-in-sequence.sql
 ```
 
 ## Prometheus
 
 - Check the exported metrics: <http://localhost:9187/metrics>
-- Have a look at the rate at which the duration changes over time: <http://localhost:9090/graph?g0.expr=rate(events_duration%5B15m%5D)&g0.tab=0&g0.stacked=0&g0.show_exemplars=0&g0.range_input=10m>
+- Have a look at the rate at which the duration changes over time: <http://localhost:9090/graph?g0.expr=rate(events_duration_seconds%5B15m%5D)&g0.tab=0&g0.stacked=0&g0.show_exemplars=0&g0.range_input=15m>
 
 *Metric: `events_duration_seconds`*
 
@@ -52,3 +52,11 @@ docker exec -it postgres psql -U postgres -d test -f /events-in-sequence.sql
 *Metric: `events_updated_at`*
 
 ![events_updated_at](docs/events-updated-at.png "Metric: events_updated_at")
+
+*Alerts: State*
+
+![alerts-state](docs/alerts-state.png "Alerts: State")
+
+*Alerts: Timeseries*
+
+![alerts-timeseries](docs/alerts-timeseries.png "Alerts: Timeseries")

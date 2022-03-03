@@ -6,8 +6,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=s3cr3t
     volumes:
-      - ./postgres/events.sql:/events.sql
-      - ./postgres/events-in-sequence.sql:/events-in-sequence.sql
+      - ./postgres:/tmp/postgres
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432

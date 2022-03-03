@@ -77,7 +77,8 @@ SELECT pg_sleep(30);
 
 -- 4m 00s
 -- UPDATE event 2
-UPDATE events SET updated_at = now() WHERE payload = 'payload-2';
+-- provoke alert for not having updated `updated_at` every 30 seconds
+-- UPDATE events SET updated_at = now() WHERE payload = 'payload-2';
 SELECT pg_sleep(30);
 
 -- 3m 30s

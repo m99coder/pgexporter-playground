@@ -54,3 +54,12 @@ groups:
       annotations:
         summary: "PostgreSQL low cache hit rate on {{ $labels.cluster }} for database {{ $labels.datname }}"
         description: "PostgreSQL low on cache hit rate on {{ $labels.cluster }} for database {{ $labels.datname }} with a value of {{ $value }}"
+
+    - alert: LongRunningJob
+      expr: events_duration_seconds{finished_at=''} > 150
+      for: 0m
+      labels:
+        severity: email
+      annotations:
+        summary: "Long running job {{ $labels.id }}: {{ $value }}s"
+        description: "Long running job\n\tID: {{ $labels.id}}\n\tSource: {{ $labels.source }}\n\tTarget: {{ $labels.target }}\n\tPayload: {{ $labels.payload }}\n\tDuration: {{ $value }}s"
