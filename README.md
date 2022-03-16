@@ -64,5 +64,6 @@ docker exec -it postgres psql -U postgres -d test -f /tmp/postgres/events-in-seq
 ## Pushgateway
 
 ```shell
-echo "some_metric 3.14" | curl --data-binary @- http://localhost:9091/metrics/job/pushgateway
+echo "some_metric 3.14159265359" \
+  | curl --data-binary @- http://localhost:9091/metrics/job/pushgateway
 ```
