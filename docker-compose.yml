@@ -19,6 +19,12 @@ services:
     ports:
       - 9090:9090
 
+  pushgateway:
+    image: prom/pushgateway:v1.4.2
+    container_name: pushgateway
+    ports:
+      - 9091:9091
+
   pgexporter:
     image: prometheuscommunity/postgres-exporter:v0.10.1
     container_name: pgexporter
