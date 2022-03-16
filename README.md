@@ -64,6 +64,16 @@ docker exec -it postgres psql -U postgres -d test -f /tmp/postgres/events-in-seq
 ## Pushgateway
 
 ```shell
+# single sample
 echo "some_metric 3.14159265359" \
   | curl --data-binary @- http://localhost:9091/metrics/job/pushgateway
+
+# more complex sample for group {job="pushgateway",instance="pustgateway:9091"}
+cat <<EOF | curl --data-binary @- http://localhost:9091/metrics/job/pushgateway/instance/pustgateway:9091
+# TYPE some_metric counter
+some_metric{label="val1"} 42
+# TYPE another_metric gauge
+# HELP another_metric Just an example.
+another_metric 2398.283
+EOF
 ```
